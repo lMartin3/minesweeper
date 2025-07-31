@@ -29,6 +29,25 @@
             </a>
         </div>
     </main>
+
+    <div id="win-modal" class="modal">
+        <div class="modal-content">
+            <h2>Congratulations! You Won!</h2>
+            <div class="modal-info">
+                <p id="modal-difficulty">Difficulty: </p>
+                <p id="modal-time">Time: </p>
+            </div>
+            <form id="win-form">
+                <div class="form-group">
+                    <label for="player-name">Enter your name:</label>
+                    <input type="text" id="player-name" name="player-name" required>
+                </div>
+                <button type="submit" class="smallbutton">SAVE SCORE</button>
+                <a class="smallbutton" href="index.html">RETURN TO MENU</a>
+            </form>
+        </div>
+    </div>
 </body>
 <script src="js/game.js"></script>
+<script src="js/scoremanager.js"></script>
 </html>

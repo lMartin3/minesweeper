@@ -264,5 +264,29 @@ function refreshScore() {
 function endGame(won) {
     gameState = "GAME_OVER";
     refreshBoard();
-    alert(won ? "You won!" : "You lost!");
+    
+    if (won) {
+        var modal = document.getElementById("win-modal");
+        var modalDifficulty = document.getElementById("modal-difficulty");
+        var modalTime = document.getElementById("modal-time");
+        var gameTime = Math.floor((Date.now() - timerStart) / 1000);
+        
+        modalDifficulty.textContent = "Difficulty: " + selectedDifficulty.name;
+        modalTime.textContent = "Time: " + gameTime + "s";
+        var finishTimestamp = Date.now();
+
+        modal.classList.add("show");
+
+        var winForm = document.getElementById("win-form");
+        winForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            var playerName = document.getElementById("player-name").value;
+            if (!playerName) return;
+            savePlayerScore(playerName, selectDifficulty.name, gameTime, finishTimestamp);
+            modal.classList.remove("show");
+            window.location.href = "index.html";
+        });
+    } else {
+        alert("You lost!");
+    }
 }
