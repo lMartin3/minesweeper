@@ -5,12 +5,16 @@ main {
 }
 
 .wrapper {
-    display: flex;
+    display: none;
     flex-direction: column;
     background-color: #140c04;
     padding: 2rem;
     width: 100%;
     row-gap: 1rem;
+}
+
+.wrapper.show {
+    display: flex;
 }
 
 .wrapper > span {

@@ -1,60 +1,75 @@
 main {
-    justify-content: center;
+    display: flex;
+    position: relative;
     align-items: center;
-    color: white;
+    justify-content: center;
     background-color: #140c04;
     height: 100%;
-}
-
-.score {
-    margin: 1rem 0 1rem 0;
-    font-size: 1.5rem;
+    color: white;
 }
 
 .board {
-    width: 100%;
     display: flex;
     justify-content: center;
-}
-
-.game-grid {
-    display: grid;
-    gap: 0;
-    grid-column-gap: 0;
-    grid-row-gap: 0;
-    border-spacing: 0;
+    width: 100%;
 }
 
 .buttons {
-    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 1rem;
-    padding: 1rem;
+    width: 100%;
     margin-top: 1rem;
-    flex-direction: column;
+    padding: 1rem;
 }
 
 .buttons > div, .buttons > a {
     width: 100%;
 }
 
+.game-grid {
+    display: grid;
+    border-spacing: 0;
+    gap: 0;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+}
+
 .game-grid-cell {
-    font-family: 'Minesweeper', sans-serif;
-    font-size: 0.8rem;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
     width: 1.5rem;
+    margin: 0;
+    padding: 0;
     aspect-ratio: 1;
     background-color: gray;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border: 1px solid black;
+    font-family: 'Minesweeper', sans-serif;
+    font-size: 0.8rem;
     user-select: none;
-    margin: 0;
 }
+
+.game-grid-cell:hover {
+    background-color: lightgray;
+}
+
+.game-grid-cell:active {
+    background-color: #696969;
+}
+
 .game-grid-cell.revealed {
     background-color: #d2d2d2;
+}
+
+.game-grid-cell.mine {
+    background-color: red;
+}
+
+.game-grid-cell.flag {
+    background-color: orange;
 }
 
 .game-grid-cell.revealed.m1 {
@@ -80,40 +95,32 @@ main {
 .game-grid-cell.revealed.m6 {
     color: #66cccc;
 }
+
 .game-grid-cell.revealed.m7 {
     color: #999999;
 }
+
 .game-grid-cell.revealed.m8 {
     color: #d0d8e0;
 }
 
-.game-grid-cell.mine {
-    background-color: red;
-}
-.game-grid-cell.flag {
-    background-color: orange;
-}
-
-.game-grid-cell:hover {
-    background-color: lightgray;
-}
-
-.game-grid-cell:active {
-    background-color: #696969;
+.score {
+    margin: 1rem 0 1rem 0;
+    font-size: 1.5rem;
 }
 
 #win-form {
     display: none;
 }
+
 #win-form.show {
     display: block;
 }
 
-
-#end-modal-content .button{
+#end-modal-content .button {
+    display: flex;
+    justify-content: center;
     width: 100%;
     margin-top: 1rem;
     text-align: center;
-    justify-content: center;
 }
-

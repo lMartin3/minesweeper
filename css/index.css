@@ -46,6 +46,7 @@ button {
     border: 0;
 }
 
+/* Fix weird issue with img animation making it all blurry*/
 img.animated-bg {
     -webkit-backface-visibility: hidden;
     -ms-transform: translateZ(0); /* IE 9 */
@@ -160,7 +161,7 @@ main h2 {
 }
 
 .button:hover {
-    filter: brightness(1.3); /* Simulates increasing V by 20% */
+    filter: brightness(1.3);
 }
 
 .button.green {
@@ -260,4 +261,20 @@ main h2 {
     color: #c0c0c0;
     border: 1px solid #444;
     font-size: 1.5rem;
+}
+
+@media(max-width: 1700px) {
+    main {
+        width: 40%;
+    }
+}
+@media(max-width: 1200px) {
+    main {
+        width: 70%;
+    }
+}
+@media(max-width: 600px) {
+    main {
+        width: 100%;
+    }
 }
