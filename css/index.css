@@ -118,6 +118,11 @@ main h1 {
     text-align: center;
 }
 
+main h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+
 .button {
     box-sizing: border-box;
     padding: 1rem 1.5rem;
