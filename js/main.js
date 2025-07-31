@@ -1,17 +1,12 @@
-var MAIN_STATE = "main"
-var DIFFICULTY_SELECT_STATE = "difficulty"
-var currentState = MAIN_STATE;
-
 function goToMainOptions() {
-    document.getElementById("main-options").style.display = "flex";
-    document.getElementById("difficulty-select").style.display = "none";
-    currentState = MAIN_STATE;
+    document.getElementById("main-options").classList.add("show");
+    document.getElementById("difficulty-select").classList.remove("show");
+
 }
 
 function goToDifficultySelect() {
-    document.getElementById("difficulty-select").style.display = "flex";
-    document.getElementById("main-options").style.display = "none";
-	currentState = DIFFICULTY_SELECT_STATE;
+    document.getElementById("main-options").classList.remove("show");
+    document.getElementById("difficulty-select").classList.add("show");
 }
 
 function selectDifficulty(difficulty) {
