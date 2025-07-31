@@ -1,9 +1,10 @@
-function savePlayerScore(playerName, difficulty, time, timestamp) {
+function savePlayerScore(playerName, difficulty, mines, time, timestamp) {
     var scoreObject = {
         name: playerName,
-        difficulty: selectedDifficulty,
+        difficulty: mines,
+        mines: mines,
         time: time,
-        timestamp: new Date().toISOString()
+        timestamp: timestamp
     };
     var scores = readScores();
     scores.push(scoreObject);

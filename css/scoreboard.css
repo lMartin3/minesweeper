@@ -1,0 +1,60 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.wrapper > h1 {
+    font-size: 2rem;
+    color: #FFFFFF;
+}
+
+.wrapper > .bigbutton, .wrapper > .smallbutton {
+    width: 100%;
+}
+
+#scoreboard {
+    width: 100%;
+    color: white;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+#scoreboard > tbody {
+    padding: 0.5rem;
+}
+
+#scoreboard th {
+    font-weight: 800;
+}
+#scoreboard thead {
+    padding-bottom: 0.5rem;
+}
+#scoreboard thead tr:first-child {
+    border-bottom: 1px solid #FFFFFF;
+    padding-bottom: 0.5rem;
+}
+
+#scoreboard tbody tr td:first-child {
+    padding-top: 0.5rem;
+}
+
+table th {
+    padding: 0rem 0; /* Adjust as needed */
+}
+
+table td {
+    padding: 0.25rem 0; /* Adjust as needed */
+}
+
+#scoreboard .right {
+    text-align: right;
+}
+#scoreboard .center {
+    text-align: center;
+}
+#scoreboard .left {
+    text-align: left;
+}

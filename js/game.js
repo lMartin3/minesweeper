@@ -282,7 +282,7 @@ function endGame(won) {
             event.preventDefault();
             var playerName = document.getElementById("player-name").value;
             if (!playerName) return;
-            savePlayerScore(playerName, selectDifficulty.name, gameTime, finishTimestamp);
+            savePlayerScore(playerName, selectedDifficulty.name, selectedDifficulty.mines, gameTime, finishTimestamp);
             modal.classList.remove("show");
             window.location.href = "index.html";
         });
