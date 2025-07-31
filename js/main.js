@@ -10,5 +10,5 @@ function goToDifficultySelect() {
 }
 
 function selectDifficulty(difficulty) {
-    document.location.href = `game.html?difficulty=${difficulty}`;
+    document.location.href = "game.html?difficulty=" + difficulty;
 }

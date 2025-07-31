@@ -19,11 +19,11 @@ var boardComponent = document.getElementById("board");
 * */
 var DIFFICULTIES = {
     easy: {
-        name: "Easy", mines: 10, size: 8, grid_size: 'small',
+        name: "Easy", mines: 10, size: 8, grid_size: "small",
     }, medium: {
-        name: "Medium", mines: 25, size: 12, grid_size: 'medium',
+        name: "Medium", mines: 25, size: 12, grid_size: "medium",
     }, hard: {
-        name: "Hard", mines: 40, size: 16, grid_size: 'large',
+        name: "Hard", mines: 40, size: 16, grid_size: "large",
     }
 };
 
@@ -38,7 +38,7 @@ var timerStart = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
     var params = new URLSearchParams(window.location.search);
-    var difficultyParam = params.get('difficulty');
+    var difficultyParam = params.get("difficulty");
     if (difficultyParam && DIFFICULTIES[difficultyParam]) {
         selectDifficulty(DIFFICULTIES[difficultyParam]);
     } else {
