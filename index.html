@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>Minesweeper - Main menu</title>
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/main.css"/>
@@ -15,7 +15,7 @@
     <img src="images/msbackground.png" class="animated-bg"/>
 </div>
 <main id="main">
-    <div class="wrapper" id="main-options">
+    <div class="wrapper show" id="main-options">
         <h1>MINESWEEPER</h1>
         <div class="button big green" onclick="goToDifficultySelect()">
             <span class="button-text">PLAY</span>
@@ -30,7 +30,7 @@
             <span class="button-text">CONTACT</span>
         </a>
     </div>
-    <div class="wrapper" id="difficulty-select" style="display: none">
+    <div class="wrapper" id="difficulty-select">
         <span>SELECT DIFFICULTY:</span>
         <div class="button big green" onclick="selectDifficulty('easy')">
             <span class="button-text">EASY</span>
