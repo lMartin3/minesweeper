@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Minesweeper';
+    src: url('mine-sweeper.otf.woff2') format('woff2'),
+    url('mine-sweeper.otf.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'hun2';
+    src: url('hun2.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'config';
+    src: url('cr.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}

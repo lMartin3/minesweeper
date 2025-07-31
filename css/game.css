@@ -1,0 +1,71 @@
+
+.game-grid {
+    display: grid;
+    gap: 0;
+    grid-column-gap: 0px;
+    max-width: 2rem;
+}
+
+.game-grid-cell {
+    font-family: 'Minesweeper', sans-serif;
+    font-size: 0.8rem;
+    height: 2rem;
+    width: 2rem;
+    background-color: gray;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    user-select: none;
+}
+
+.game-grid-cell.revealed {
+    background-color: #d2d2d2;
+}
+
+.game-grid-cell.revealed.m1 {
+    color: #7cc7ff;
+}
+
+.game-grid-cell.revealed.m2 {
+    color: #66c266;
+}
+
+.game-grid-cell.revealed.m3 {
+    color: #ff7788;
+}
+
+.game-grid-cell.revealed.m4 {
+    color: #ee88ff;
+}
+
+.game-grid-cell.revealed.m5 {
+    color: #ddaa22;
+}
+
+.game-grid-cell.revealed.m6 {
+    color: #66cccc;
+}
+.game-grid-cell.revealed.m7 {
+    color: #999999;
+}
+.game-grid-cell.revealed.m8 {
+    color: #d0d8e0;
+}
+
+.game-grid-cell.mine {
+    background-color: red;
+}
+.game-grid-cell.flag {
+    background-color: orange;
+}
+
+.game-grid-cell:hover {
+    background-color: lightgray;
+}
+
+.game-grid-cell:active {
+    background-color: #696969;
+}
+
