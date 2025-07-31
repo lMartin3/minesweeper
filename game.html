@@ -19,9 +19,7 @@
 
     </div>
     <div class="buttons">
-        <div class="smallbutton" id="restart">
-            <span>RESTART</span>
-        </div>
+        <button class="smallbutton" onclick="restartGame()">RESTART</button>
         <a class="smallbutton" id="back" href="index.html">
             <span>BACK TO MAIN MENU</span>
         </a>
@@ -30,7 +28,7 @@
 
 <div id="end-modal" class="modal">
     <div id="end-modal-content" class="modal-content">
-        <h2>Congratulations! You Won!</h2>
+        <h2 id="end-modal-title">Congratulations! You Won!</h2>
         <div class="modal-info">
             <p id="modal-difficulty">Difficulty: </p>
             <p id="modal-time">Time: </p>
@@ -42,6 +40,7 @@
             </div>
             <button type="submit" class="smallbutton">SAVE SCORE</button>
         </form>
+        <button class="smallbutton" onclick="restartGame()">RESTART</button>
         <a class="smallbutton" href="index.html">RETURN TO MENU</a>
     </div>
 </div>

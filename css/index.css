@@ -42,7 +42,7 @@ body {
     font-family: 'config', sans-serif;
 }
 
-button[type='submit'] {
+button {
     border: 0;
 }
 

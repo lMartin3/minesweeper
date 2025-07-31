@@ -11,7 +11,7 @@ var boardComponent = document.getElementById("board");
 * */
 var DIFFICULTIES = {
     easy: {
-        name: "Easy", mines: 1, size: 8, grid_size: 'small',
+        name: "Easy", mines: 10, size: 8, grid_size: 'small',
     }, medium: {
         name: "Medium", mines: 25, size: 12, grid_size: 'medium',
     }, hard: {
@@ -255,14 +255,28 @@ function refreshScore() {
 function endGame(won) {
     gameState = "GAME_OVER";
     refreshBoard();
+    toggleModal(true, won);
+}
 
+function closeModal() {
+    toggleModal(false, false);
+}
 
+function toggleModal(open, won) {
+    var modal = document.getElementById("end-modal");
+    if (!open) {
+        modal.classList.remove("show");
+        return
+    }
+    modal.classList.add("show");
     var modal = document.getElementById("end-modal");
     var modalContent = document.getElementById("end-modal-content");
+    var modalTitle = document.getElementById("end-modal-title");
     var modalDifficulty = document.getElementById("modal-difficulty");
     var modalTime = document.getElementById("modal-time");
     var gameTime = Math.floor((Date.now() - timerStart) / 1000);
 
+    modalTitle.textContent = won ? "You won!" : "You lost!";
     modalDifficulty.textContent = "Difficulty: " + selectedDifficulty.name;
     modalTime.textContent = "Time: " + gameTime + "s";
     var finishTimestamp = Date.now();
@@ -288,4 +302,12 @@ function endGame(won) {
         modalContent.classList.add("lose");
         winForm.classList.remove("show");
     }
+
+
+}
+
+function restartGame() {
+    closeModal()
+    selectDifficulty(selectedDifficulty);
+    document.getElementById("score").textContent = "Click anywhere on the board to begin";
 }
