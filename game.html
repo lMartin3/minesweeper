@@ -9,42 +9,42 @@
     <link rel="stylesheet" href="css/game.css"/>
 </head>
 <body>
-    <header>
-        <h1>Minesweeper</h1>
-        <span>No es </span>
-    </header>
-    <main id="main">
-        <div id="score" class="score">Click anywhere on the board to begin</div>
-        <div class="board" id="board">
+<div class="background-container">
+    <div class="bg-overlay"></div>
+    <img src="images/msbackground.png" class="animated-bg"/>
+</div>
+<main id="main">
+    <div id="score" class="score">Click anywhere on the board to begin</div>
+    <div class="board" id="board">
 
-        </div>
-        <div class="buttons">
-            <div class="smallbutton" id="restart">
-                <span>RESTART</span>
-            </div>
-            <a class="smallbutton" id="back" href="index.html">
-                <span>BACK TO MAIN MENU</span>
-            </a>
-        </div>
-    </main>
-
-    <div id="end-modal" class="modal">
-        <div id="end-modal-content" class="modal-content">
-            <h2>Congratulations! You Won!</h2>
-            <div class="modal-info">
-                <p id="modal-difficulty">Difficulty: </p>
-                <p id="modal-time">Time: </p>
-            </div>
-            <form id="win-form">
-                <div class="form-group">
-                    <label for="player-name">Enter your name:</label>
-                    <input type="text" id="player-name" name="player-name" required>
-                </div>
-                <button type="submit" class="smallbutton">SAVE SCORE</button>
-            </form>
-                <a class="smallbutton" href="index.html">RETURN TO MENU</a>
-        </div>
     </div>
+    <div class="buttons">
+        <div class="smallbutton" id="restart">
+            <span>RESTART</span>
+        </div>
+        <a class="smallbutton" id="back" href="index.html">
+            <span>BACK TO MAIN MENU</span>
+        </a>
+    </div>
+</main>
+
+<div id="end-modal" class="modal">
+    <div id="end-modal-content" class="modal-content">
+        <h2>Congratulations! You Won!</h2>
+        <div class="modal-info">
+            <p id="modal-difficulty">Difficulty: </p>
+            <p id="modal-time">Time: </p>
+        </div>
+        <form id="win-form">
+            <div class="form-group">
+                <label for="player-name">Enter your name:</label>
+                <input type="text" id="player-name" name="player-name" required>
+            </div>
+            <button type="submit" class="smallbutton">SAVE SCORE</button>
+        </form>
+        <a class="smallbutton" href="index.html">RETURN TO MENU</a>
+    </div>
+</div>
 </body>
 <script src="js/game.js"></script>
 <script src="js/scoremanager.js"></script>
