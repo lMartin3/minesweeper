@@ -7,7 +7,7 @@ main {
 }
 
 .score {
-    margin-bottom: 1rem;
+    margin: 1rem 0 1rem 0;
     font-size: 1.5rem;
 }
 
@@ -110,7 +110,7 @@ main {
 }
 
 
-#end-modal-content .smallbutton{
+#end-modal-content .button{
     width: 100%;
     margin-top: 1rem;
     text-align: center;

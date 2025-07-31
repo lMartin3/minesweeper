@@ -11,13 +11,18 @@ main {
     gap: 1rem;
 }
 
-.wrapper > h1 {
-    font-size: 2rem;
-    color: #FFFFFF;
+.wrapper > .bigbutton, .wrapper > .button {
+    width: 100%;
 }
 
-.wrapper > .bigbutton, .wrapper > .smallbutton {
+#sort-buttons {
+    display: flex;
+    gap: 1rem;
     width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
 }
 
 #scoreboard {

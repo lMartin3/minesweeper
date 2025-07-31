@@ -118,7 +118,7 @@ main h1 {
     text-align: center;
 }
 
-.smallbutton {
+.button {
     box-sizing: border-box;
     padding: 1rem 1.5rem;
     display: inline-flex;
@@ -132,62 +132,61 @@ main h1 {
     color: #c0c0c0;
     text-decoration: none;
     text-indent: unset;
-
 }
 
-.bigbutton {
+.button.big {
     padding: 1.5rem 2rem;
     display: flex;
     flex-direction: column;
     text-align: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    font-size: 2rem;
-    text-decoration: none;
-    line-height: normal;
-    line-height: normal;
 }
 
-.bigbutton > .smalltext {
+
+.button.small {
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+}
+
+.button > .smalltext {
     font-size: 1.5rem;
 }
-.bigbutton > .smallertext {
+.button > .smallertext {
     font-size: 1.2rem;
 }
 
-.bigbutton:hover {
+.button:hover {
     filter: brightness(1.3); /* Simulates increasing V by 20% */
 }
 
-.bigbutton.green {
+.button.green {
     background-color: var(--dark-green);
     color: var(--light-green);
 }
 
-.bigbutton.yellow {
+.button.yellow {
     background-color: var(--dark-yellow);
     color: var(--light-yellow);
 }
 
-.bigbutton.red {
+.button.red {
     background-color: var(--dark-red);
     color: var(--light-red);
 }
 
-.bigbutton.pink {
+.button.pink {
     background-color: var(--dark-pink);
     color: var(--light-pink);
 }
-.bigbutton.blue {
+.button.blue {
     background-color: var(--dark-blue);
     color: var(--light-blue);
 }
 
-.bigbutton.purple {
+.button.purple {
     background-color: var(--dark-purple);
     color: var(--light-purple);
 }
-.bigbutton.gray {
+.button.gray {
     background-color: var(--dark-gray);
     color: var(--light-gray);
 }
