@@ -1,58 +1,18 @@
-main {
-    display: flex;
-    width: 30%;
-    margin: 0 auto;
-    justify-content: center;
-    padding: 2rem;
-    font-family: 'config', sans-serif;
-    background-color: #140c04;
-}
 
-.difficulty-select {
+.wrapper {
     display: flex;
     flex-direction: column;
     background-color: #d2d2d2;
     padding: 1rem;
     width: 100%;
-    gap: 1rem;
+    row-gap: 1rem;
 }
 
-.difficulty-select > span {
+.wrapper > span {
     font-size: 1.5rem;
     width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.difficulty {
-    padding: 1.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-}
-
-.difficulty:hover {
-    filter: brightness(1.3); /* Simulates increasing V by 20% */
-}
-
-.difficulty.easy {
-    background-color: #1C3E2A;
-    color: #88FF99;
-}
-
-.difficulty.medium {
-    background-color: #322820;
-    color: #FFBA88;
-}
-
-.difficulty.hard {
-    background-color: #3E1C1C;
-    color: #FFB9B9;
-}
-
-.difficulty-name {
-    font-size: 2rem;
 }

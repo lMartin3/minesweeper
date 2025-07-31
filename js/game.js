@@ -13,17 +13,20 @@ var DIFFICULTIES = {
     easy: {
         name: "Easy",
         mines: 10,
-        size: 8
+        size: 8,
+        grid_size: 'small',
     },
     medium: {
         name: "Medium",
         mines: 25,
-        size: 12
+        size: 12,
+        grid_size: 'medium',
     },
     hard: {
         name: "Hard",
         mines: 40,
-        size: 16
+        size: 16,
+        grid_size: 'large',
     }
 };
 
@@ -37,7 +40,13 @@ var flags = 0;
 var timerStart = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
-    startSizeSelectState();
+    var params = new URLSearchParams(window.location.search);
+    var difficultyParam = params.get('difficulty');
+    if (difficultyParam && DIFFICULTIES[difficultyParam]) {
+        selectDifficulty(DIFFICULTIES[difficultyParam]);
+    } else {
+        startSizeSelectState();
+    }
     setInterval(function () {
         refreshScore();
     }, 1000)
@@ -69,8 +78,9 @@ function selectDifficulty(difficulty) {
     flags = 0;
     var gameGrid = document.createElement("div");
     gameGrid.classList.add("game-grid");
+    gameGrid.classList.add(difficulty.grid_size);
     var size = difficulty.size;
-    gameGrid.style = `grid-template-columns: repeat(${size}, 1fr); grid-template-rows: repeat(${size}, 1fr);`;
+    gameGrid.style = `grid-template-columns: repeat(${size}, 1fr); grid-template-rows: repeat(${size}, 1fr); max-width: ${size*1.5}rem;`;
     boardComponent.appendChild(gameGrid);
     for (var y = 0; y < size; y++) {
         var row = [];
@@ -101,6 +111,9 @@ function selectDifficulty(difficulty) {
         }
         gameRows.push(row);
     }
+
+
+    refreshBoard();
 
 }
 

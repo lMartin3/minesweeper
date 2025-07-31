@@ -1,16 +1,41 @@
+main {
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
 .game-grid {
     display: grid;
     gap: 0;
-    grid-column-gap: 0px;
-    max-width: 2rem;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+    border-spacing: 0;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    flex-direction: column;
+}
+
+.buttons > div, .buttons > a {
+    width: 100%;
 }
 
 .game-grid-cell {
     font-family: 'Minesweeper', sans-serif;
     font-size: 0.8rem;
-    height: 2rem;
-    width: 2rem;
+    width: 1.5rem;
+    aspect-ratio: 1;
     background-color: gray;
     padding: 0;
     display: flex;
@@ -18,8 +43,8 @@
     align-items: center;
     border: 1px solid black;
     user-select: none;
+    margin: 0;
 }
-
 .game-grid-cell.revealed {
     background-color: #d2d2d2;
 }

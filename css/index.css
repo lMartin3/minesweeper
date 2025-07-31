@@ -30,3 +30,84 @@ header {
     align-items: center;
     padding: 1rem;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 2rem;
+    font-family: 'config', sans-serif;
+    background-color: #140c04;
+}
+
+
+.smallbutton {
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 2rem;
+    background-color: #222222;
+    color: #c0c0c0;
+    text-decoration: none;
+
+}
+
+.bigbutton {
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+.bigbutton > .smalltext {
+    font-size: 1.5rem;
+}
+.bigbutton > .smallertext {
+    font-size: 1.2rem;
+}
+
+.bigbutton:hover {
+    filter: brightness(1.3); /* Simulates increasing V by 20% */
+}
+
+.bigbutton.green {
+    background-color: #1C3E2A;
+    color: #88FF99;
+}
+
+.bigbutton.yellow {
+    background-color: #322820;
+    color: #FFBA88;
+}
+
+.bigbutton.red {
+    background-color: #3E1C1C;
+    color: #FFB9B9;
+}
+
+.bigbutton.pink {
+    background-color: #34222d;
+    color: #F1BCDB;
+}
+.bigbutton.blue {
+    background-color: #1c263e;
+    color: #88afff;
+}
+
+.bigbutton.purple {
+    background-color: #1e1d2d;
+    color: #bab8df;
+}
+.bigbutton.gray {
+    background-color: #222222;
+    color: #c0c0c0;
+}

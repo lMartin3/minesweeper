@@ -7,29 +7,44 @@
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/main.css"/>
+    <script src="js/main.js"></script>
 </head>
 <body>
     <header>
         <h1>Minesweeper</h1>
     </header>
     <main id="main">
-        <div class="difficulty-select">
-            <span>SELECT DIFFICULTY:</span>
-            <div class="difficulty easy">
-                <span class="difficulty-name">EASY</span>
-                <span class="difficulty-data">8x8 - 10 💥</span>
+        <div class="wrapper" id="main-options">
+            <div class="bigbutton green" onclick="goToDifficultySelect()">
+                <span class="bigbutton-text">PLAY</span>
             </div>
-            <div class="difficulty medium">
-                <span class="difficulty-name">MEDIUM</span>
-                <span class="difficulty-data">12x12 - 25 💥</span>
+            <div class="bigbutton blue" onclick="goToDifficultySelect()">
+                <span class="bigbutton-text">SCOREBOARD</span>
             </div>
-            <div class="difficulty hard">
-                <span class="difficulty-name">HARD</span>
-                <span class="difficulty-data">16x16 - 40 💥</span>
+            <a class="bigbutton pink" href="https://github.com/" target="_blank">
+                <span class="bigbutton-text">GITHUB</span>
+            </a>
+            <div class="bigbutton purple" onclick="goToDifficultySelect()">
+                <span class="bigbutton-text">CONTACT</span>
             </div>
         </div>
-        <div class="other-options">
-
+        <div class="wrapper" id="difficulty-select" style="display: none">
+            <span>SELECT DIFFICULTY:</span>
+            <div class="bigbutton green" onclick="selectDifficulty('easy')">
+                <span class="bigbutton-text">EASY</span>
+                <span class="smalltext">8x8 - 10 💥</span>
+            </div>
+            <div class="bigbutton yellow" onclick="selectDifficulty('easy')">
+                <span class="bigbutton-text">MEDIUM</span>
+                <span class="smalltext">12x12 - 25 💥</span>
+            </div>
+            <div class="bigbutton red" onclick="selectDifficulty('easy')">
+                <span class="bigbutton-text">HARD</span>
+                <span class="smalltext">16x16 - 40 💥</span>
+            </div>
+            <div class="smallbutton" onclick="goToMainOptions()">
+                <span class="bigbutton-text">BACK</span>
+            </div>
         </div>
     </main>
 </body>
