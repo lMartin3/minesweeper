@@ -1,6 +1,14 @@
 "use strict";
 
-// Transpile or update your codebase to ES5. Make sure to use ES5 syntax only.
+/**
+ * Minesweeper Game Implementation
+ *
+ * This file contains the core game logic for the Minesweeper game.
+ * It handles game initialization, difficulty selection, board generation,
+ * game state management, and user interactions.
+ *
+ * The code is written in ES5 for maximum browser compatibility.
+ */
 
 var boardComponent = document.getElementById("board");
 /*
@@ -69,7 +77,7 @@ function selectDifficulty(difficulty) {
     gameGrid.classList.add("game-grid");
     gameGrid.classList.add(difficulty.grid_size);
     var size = difficulty.size;
-    gameGrid.style = `grid-template-columns: repeat(${size}, 1fr); grid-template-rows: repeat(${size}, 1fr); max-width: ${size * 1.5}rem;`;
+    gameGrid.style = "grid-template-columns: repeat(" + size + ", 1fr); grid-template-rows: repeat(" + size + ", 1fr); max-width: " + (size * 1.5) + "rem;";
     boardComponent.appendChild(gameGrid);
     for (var y = 0; y < size; y++) {
         var row = [];
@@ -103,6 +111,13 @@ function selectDifficulty(difficulty) {
 }
 
 
+/**
+ * Processes a click on a cell in the game grid
+ *
+ * @param {boolean} isLeftClick - Whether the click was a left click (true) or right click (false)
+ * @param {number} x - x of the clicked cell
+ * @param {number} y - y of the clicked cell
+ */
 function processClick(isLeftClick, x, y) {
     if (gameState !== "IN_GAME") return;
     if (!didFirstClickOnGrid) {
@@ -149,31 +164,31 @@ function processClick(isLeftClick, x, y) {
     }).length;
     refreshBoard();
     refreshScore();
-    if (flags === selectedDifficulty.mines) {
-        var won = true;
-        gameRows.flat().forEach(function (cell) {
-            if (cell.mine !== cell.flag || !cell.flag && !cell.revealed) won = false;
-        })
-        if (won) endGame(true);
-    }
+    var won = true;
+    gameRows.flat().forEach(function (cell) {
+        if (!cell.mine && !cell.revealed) won = false;
+    })
+    if (won) endGame(true);
+
 }
 
+/**
+ * Reveals a cell and explores adjacent cells recursively if there are no adjacent mines. Uses BFS
+ *
+ * @param {Object} cell - The cell to reveal and explore from
+ */
 function revealCellAndExplore(cell) {
     var exploredCells = [];
     var cellsToExplore = [cell];
     while (cellsToExplore.length > 0) {
         var currentCell = cellsToExplore.pop();
-        console.log(`${currentCell.x},${currentCell.y} Exploring`);
         if (currentCell.revealed) continue;
         currentCell.revealed = true;
-        console.log(currentCell);
         exploredCells.push(currentCell);
         var adjacentCells = getAdjacentCells(currentCell.x, currentCell.y);
-        console.log(adjacentCells);
         if (adjacentCells.some(function (cell) {
             return cell.mine;
         })) {
-            console.log(`${currentCell.x},${currentCell.y} While exploring, adjacent mines`);
             continue;
         }
         adjacentCells.forEach(function (adjacentCell) {
@@ -185,6 +200,12 @@ function revealCellAndExplore(cell) {
 }
 
 
+/**
+ * Gets the adjacent cells to a certain cell in the specified coordinates
+ * @param x cell x
+ * @param y cell y
+ * @returns {*[]} array of adjacent cells
+ */
 function getAdjacentCells(x, y) {
     var cells = [];
     for (var i = x - 1; i <= x + 1; i++) {
@@ -197,7 +218,12 @@ function getAdjacentCells(x, y) {
     return cells;
 }
 
-
+/**
+ * Generates the mines taking into consideration the initial cell clicked, such that the player
+ * doesn't lose immediately
+ * @param initialX X of the initial cell
+ * @param initialY Y of the initial cell
+ */
 function generateMines(initialX, initialY) {
     var addedMines = 0;
     while (addedMines < selectedDifficulty.mines) {
@@ -209,9 +235,11 @@ function generateMines(initialX, initialY) {
             addedMines++;
         }
     }
-    console.log(gameRows);
 }
 
+/**
+ * Refreshes the board
+ */
 function refreshBoard() {
     var isGameOver = gameState == "GAME_OVER";
     for (var y = 0; y < selectedDifficulty.size; y++) {
@@ -237,8 +265,8 @@ function refreshBoard() {
             }).length;
             if (cell.revealed) {
                 cellElement.classList.add("revealed");
-                cellElement.classList.add(`m${adjacentMines}`);
-                cellElement.textContent = adjacentMines > 0 ? `${adjacentMines}` : "";
+                cellElement.classList.add("m" + adjacentMines);
+                cellElement.textContent = adjacentMines > 0 ? adjacentMines.toString() : "";
             } else {
                 cellElement.classList.remove("revealed");
             }
@@ -246,12 +274,19 @@ function refreshBoard() {
     }
 }
 
+/**
+ * Refreshes the game score, only works if the game is already started and the first cell has been revealed
+ */
 function refreshScore() {
     if (gameState !== "IN_GAME" || !didFirstClickOnGrid) return;
     var scoreElement = document.getElementById("score");
-    scoreElement.textContent = `${flags} 🚩 | ${selectedDifficulty.mines - flags} 💣 | ${Math.floor((Date.now() - timerStart) / 1000)}s`;
+    scoreElement.textContent = flags + " 🚩 | " + (selectedDifficulty.mines - flags) + " 💣 | " + Math.floor((Date.now() - timerStart) / 1000) + "s";
 }
 
+/**
+ * Marks the game as ended and shows the result modal
+ * @param won
+ */
 function endGame(won) {
     gameState = "GAME_OVER";
     refreshBoard();
@@ -262,14 +297,18 @@ function closeModal() {
     toggleModal(false, false);
 }
 
+/**
+ * Opens or closes the result modal
+ * @param open Whether the modal should be open or not
+ * @param won If the modal opens, whether to display the win title and form (true) or lose title (false).
+ */
 function toggleModal(open, won) {
     var modal = document.getElementById("end-modal");
     if (!open) {
         modal.classList.remove("show");
-        return
+        return;
     }
     modal.classList.add("show");
-    var modal = document.getElementById("end-modal");
     var modalContent = document.getElementById("end-modal-content");
     var modalTitle = document.getElementById("end-modal-title");
     var modalDifficulty = document.getElementById("modal-difficulty");
@@ -288,7 +327,13 @@ function toggleModal(open, won) {
         modalContent.classList.remove("lose");
         modalContent.classList.add("win");
         winForm.classList.add("show");
-        // FIXME this will have duplicate listeners if the game restarts
+
+        // Remove any existing event listeners by cloning and replacing the form
+        var oldWinForm = winForm;
+        var newWinForm = oldWinForm.cloneNode(true);
+        oldWinForm.parentNode.replaceChild(newWinForm, oldWinForm);
+        winForm = newWinForm;
+
         winForm.addEventListener("submit", function (event) {
             event.preventDefault();
             var playerName = document.getElementById("player-name").value;

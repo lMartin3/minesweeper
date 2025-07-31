@@ -2,6 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
     displayScores('date');
 });
 
+
+/**
+ * Displays the scores
+ * @param sortBy Parameter to sort the scores by. Options are: 'date' and 'time'
+ */
 function displayScores(sortBy) {
     var scores = readScores();
     var sortFunction = null;
