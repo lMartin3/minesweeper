@@ -1,7 +1,7 @@
 function savePlayerScore(playerName, difficulty, mines, time, timestamp) {
     var scoreObject = {
         name: playerName,
-        difficulty: mines,
+        difficulty: difficulty,
         mines: mines,
         time: time,
         timestamp: timestamp

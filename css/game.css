@@ -1,6 +1,11 @@
 main {
     justify-content: center;
     align-items: center;
+    color: white;
+}
+
+.score {
+    margin-bottom: 1rem;
 }
 
 .board {
@@ -94,9 +99,15 @@ main {
     background-color: #696969;
 }
 
+#win-form {
+    display: none;
+}
+#win-form.show {
+    display: block;
+}
 
 
-#win-form .smallbutton{
+#end-modal-content .smallbutton{
     width: 100%;
     margin-top: 1rem;
     text-align: center;

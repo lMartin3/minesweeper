@@ -1,3 +1,19 @@
+:root {
+    --dark-green: #1C3E2A;
+    --light-green: #88FF99;
+    --dark-red: #3E1C1C;
+    --light-red: #FFB9B9;
+    --dark-blue: #1c263e;
+    --light-blue:#88afff;
+    --dark-yellow: #322820;
+    --light-yellow: #FFBA88;
+    --dark-pink: #34222d;
+    --light-pink: #F1BCDB;
+    --dark-purple: #1e1d2d;
+    --light-purple: #bab8df;
+    --dark-gray: #222222;
+    --light-gray: #c0c0c0;
+}
 @font-face {
     font-family: 'Minesweeper';
     src: url('mine-sweeper.otf.woff2') format('woff2'),
@@ -93,36 +109,36 @@ main {
 }
 
 .bigbutton.green {
-    background-color: #1C3E2A;
-    color: #88FF99;
+    background-color: var(--dark-green);
+    color: var(--light-green);
 }
 
 .bigbutton.yellow {
-    background-color: #322820;
-    color: #FFBA88;
+    background-color: var(--dark-yellow);
+    color: var(--light-yellow);
 }
 
 .bigbutton.red {
-    background-color: #3E1C1C;
-    color: #FFB9B9;
+    background-color: var(--dark-red);
+    color: var(--light-red);
 }
 
 .bigbutton.pink {
-    background-color: #34222d;
-    color: #F1BCDB;
+    background-color: var(--dark-pink);
+    color: var(--light-pink);
 }
 .bigbutton.blue {
-    background-color: #1c263e;
-    color: #88afff;
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
 }
 
 .bigbutton.purple {
-    background-color: #1e1d2d;
-    color: #bab8df;
+    background-color: var(--dark-purple);
+    color: var(--light-purple);
 }
 .bigbutton.gray {
-    background-color: #222222;
-    color: #c0c0c0;
+    background-color: var(--dark-gray);
+    color: var(--light-gray);
 }
 
 .modal {
@@ -143,13 +159,22 @@ main {
 }
 
 .modal-content {
-    background-color: #1C3E2A;
     padding: 2rem;
     border-radius: 5px;
     width: 90%;
     max-width: 500px;
+    background-color: var(--dark-gray);
     font-family: 'config', sans-serif;
-    color: #88FF99;
+    color: var(--light-gray);
+}
+
+.modal-content.win {
+    background-color: var(--dark-green);
+    color: var(--light-green);
+}
+.modal-content.lose {
+    background-color: var(--dark-red);
+    color: var(--light-red);
 }
 
 .modal-content h2 {

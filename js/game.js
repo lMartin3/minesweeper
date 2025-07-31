@@ -11,22 +11,11 @@ var boardComponent = document.getElementById("board");
 * */
 var DIFFICULTIES = {
     easy: {
-        name: "Easy",
-        mines: 10,
-        size: 8,
-        grid_size: 'small',
-    },
-    medium: {
-        name: "Medium",
-        mines: 25,
-        size: 12,
-        grid_size: 'medium',
-    },
-    hard: {
-        name: "Hard",
-        mines: 40,
-        size: 16,
-        grid_size: 'large',
+        name: "Easy", mines: 1, size: 8, grid_size: 'small',
+    }, medium: {
+        name: "Medium", mines: 25, size: 12, grid_size: 'medium',
+    }, hard: {
+        name: "Hard", mines: 40, size: 16, grid_size: 'large',
     }
 };
 
@@ -80,7 +69,7 @@ function selectDifficulty(difficulty) {
     gameGrid.classList.add("game-grid");
     gameGrid.classList.add(difficulty.grid_size);
     var size = difficulty.size;
-    gameGrid.style = `grid-template-columns: repeat(${size}, 1fr); grid-template-rows: repeat(${size}, 1fr); max-width: ${size*1.5}rem;`;
+    gameGrid.style = `grid-template-columns: repeat(${size}, 1fr); grid-template-rows: repeat(${size}, 1fr); max-width: ${size * 1.5}rem;`;
     boardComponent.appendChild(gameGrid);
     for (var y = 0; y < size; y++) {
         var row = [];
@@ -102,11 +91,7 @@ function selectDifficulty(difficulty) {
             })(x, y));
             gameGrid.appendChild(cell);
             row.push({
-                x: x,
-                y: y,
-                mine: false,
-                flag: false,
-                revealed: false
+                x: x, y: y, mine: false, flag: false, revealed: false
             });
         }
         gameRows.push(row);
@@ -122,39 +107,17 @@ function processClick(isLeftClick, x, y) {
     if (gameState !== "IN_GAME") return;
     if (!didFirstClickOnGrid) {
         generateMines(x, y);
-        didFirstClickOnGrid = true;
         timerStart = Date.now();
     }
     var cell = gameRows[y][x];
 
-    if (isLeftClick) {
+    if (isLeftClick || !didFirstClickOnGrid) {
+        didFirstClickOnGrid = true;
         if (!cell.mine && !cell.flag) {
             if (!cell.revealed) {
-                var exploredCells = [];
-                var cellsToExplore = [cell];
-                while (cellsToExplore.length > 0) {
-                    var currentCell = cellsToExplore.pop();
-                    console.log(`${currentCell.x},${currentCell.y} Exploring`);
-                    if (currentCell.revealed) continue;
-                    currentCell.revealed = true;
-                    console.log(currentCell);
-                    exploredCells.push(currentCell);
-                    var adjacentCells = getAdjacentCells(currentCell.x, currentCell.y);
-                    console.log(adjacentCells);
-                    if (adjacentCells.some(function (cell) {
-                        return cell.mine;
-                    })) {
-                        console.log(`${currentCell.x},${currentCell.y} While exploring, adjacent mines`);
-                        continue;
-                    }
-                    adjacentCells.forEach(function (adjacentCell) {
-                        if (!adjacentCell.revealed && !adjacentCell.flag) {
-                            cellsToExplore.push(adjacentCell);
-                        }
-                    })
-                }
+                revealCellAndExplore(cell);
             } else {
-                adjacentCells = getAdjacentCells(x, y);
+                var adjacentCells = getAdjacentCells(x, y);
                 var adjacentMines = adjacentCells.filter(function (cell) {
                     return cell.mine
                 }).length;
@@ -162,15 +125,15 @@ function processClick(isLeftClick, x, y) {
                     return cell.flag
                 }).length;
                 if (adjacentFlags >= adjacentMines) {
-                    adjacentCells.forEach(function (cell) {
-                        if (!cell.flag) {
-                            if (cell.mine) {
+                    adjacentCells.forEach(function (c) {
+                        if (!c.flag) {
+                            if (c.mine) {
                                 endGame(false);
                             } else {
-                                cell.revealed = true
+                                revealCellAndExplore(c);
                             }
                         }
-                    })
+                    });
                 }
             }
         } else if (cell.mine) {
@@ -181,15 +144,43 @@ function processClick(isLeftClick, x, y) {
             cell.flag = !cell.flag;
         }
     }
+    flags = gameRows.flat().filter(function (cell) {
+        return cell.flag
+    }).length;
     refreshBoard();
     refreshScore();
-    flags = gameRows.flat().filter(function (cell) {return cell.flag}).length;
     if (flags === selectedDifficulty.mines) {
         var won = true;
         gameRows.flat().forEach(function (cell) {
-            if(cell.mine!==cell.flag) won = false;
+            if (cell.mine !== cell.flag || !cell.flag && !cell.revealed) won = false;
         })
-        if(won) endGame(true);
+        if (won) endGame(true);
+    }
+}
+
+function revealCellAndExplore(cell) {
+    var exploredCells = [];
+    var cellsToExplore = [cell];
+    while (cellsToExplore.length > 0) {
+        var currentCell = cellsToExplore.pop();
+        console.log(`${currentCell.x},${currentCell.y} Exploring`);
+        if (currentCell.revealed) continue;
+        currentCell.revealed = true;
+        console.log(currentCell);
+        exploredCells.push(currentCell);
+        var adjacentCells = getAdjacentCells(currentCell.x, currentCell.y);
+        console.log(adjacentCells);
+        if (adjacentCells.some(function (cell) {
+            return cell.mine;
+        })) {
+            console.log(`${currentCell.x},${currentCell.y} While exploring, adjacent mines`);
+            continue;
+        }
+        adjacentCells.forEach(function (adjacentCell) {
+            if (!adjacentCell.revealed && !adjacentCell.flag && !adjacentCell.mine) {
+                cellsToExplore.push(adjacentCell);
+            }
+        })
     }
 }
 
@@ -256,29 +247,35 @@ function refreshBoard() {
 }
 
 function refreshScore() {
-    if(gameState !== "IN_GAME" || !didFirstClickOnGrid) return;
+    if (gameState !== "IN_GAME" || !didFirstClickOnGrid) return;
     var scoreElement = document.getElementById("score");
-    scoreElement.textContent = `Flags: ${flags} | Time: ${Math.floor((Date.now() - timerStart) / 1000)}s`;
+    scoreElement.textContent = `${flags} 🚩 | ${selectedDifficulty.mines - flags} 💣 | ${Math.floor((Date.now() - timerStart) / 1000)}s`;
 }
 
 function endGame(won) {
     gameState = "GAME_OVER";
     refreshBoard();
-    
+
+
+    var modal = document.getElementById("end-modal");
+    var modalContent = document.getElementById("end-modal-content");
+    var modalDifficulty = document.getElementById("modal-difficulty");
+    var modalTime = document.getElementById("modal-time");
+    var gameTime = Math.floor((Date.now() - timerStart) / 1000);
+
+    modalDifficulty.textContent = "Difficulty: " + selectedDifficulty.name;
+    modalTime.textContent = "Time: " + gameTime + "s";
+    var finishTimestamp = Date.now();
+
+    modal.classList.add("show");
+
+    var winForm = document.getElementById("win-form");
     if (won) {
-        var modal = document.getElementById("win-modal");
-        var modalDifficulty = document.getElementById("modal-difficulty");
-        var modalTime = document.getElementById("modal-time");
-        var gameTime = Math.floor((Date.now() - timerStart) / 1000);
-        
-        modalDifficulty.textContent = "Difficulty: " + selectedDifficulty.name;
-        modalTime.textContent = "Time: " + gameTime + "s";
-        var finishTimestamp = Date.now();
-
-        modal.classList.add("show");
-
-        var winForm = document.getElementById("win-form");
-        winForm.addEventListener("submit", function(event) {
+        modalContent.classList.remove("lose");
+        modalContent.classList.add("win");
+        winForm.classList.add("show");
+        // FIXME this will have duplicate listeners if the game restarts
+        winForm.addEventListener("submit", function (event) {
             event.preventDefault();
             var playerName = document.getElementById("player-name").value;
             if (!playerName) return;
@@ -287,6 +284,8 @@ function endGame(won) {
             window.location.href = "index.html";
         });
     } else {
-        alert("You lost!");
+        modalContent.classList.remove("win");
+        modalContent.classList.add("lose");
+        winForm.classList.remove("show");
     }
 }
