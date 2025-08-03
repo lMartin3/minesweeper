@@ -1,3 +1,7 @@
+// Disable ES6ConvertVarToLetConst inspection
+// such that WebStorm doesn't flood the file with warnings.
+// noinspection ES6ConvertVarToLetConst
+
 "use strict";
 
 /**
@@ -29,8 +33,6 @@ var DIFFICULTIES = {
 
 var gameState = "SIZE_SELECT";
 var didFirstClickOnGrid = false;
-var MIN_SIZE = 5;
-var MAX_SIZE = 20;
 var gameRows = [];
 var selectedDifficulty = null;
 var flags = 0;
@@ -244,7 +246,7 @@ function generateMines(initialX, initialY) {
  * Refreshes the board
  */
 function refreshBoard() {
-    var isGameOver = gameState == "GAME_OVER";
+    var isGameOver = gameState === "GAME_OVER";
     for (var y = 0; y < selectedDifficulty.size; y++) {
         for (var x = 0; x < selectedDifficulty.size; x++) {
             var cell = gameRows[y][x];
