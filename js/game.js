@@ -151,7 +151,7 @@ function processClick(isLeftClick, x, y) {
                     });
                 }
             }
-        } else if (cell.mine) {
+        } else if (cell.mine && !cell.flag) {
             endGame(false)
         }
     } else {
