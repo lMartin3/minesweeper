@@ -46,7 +46,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     setInterval(function () {
         refreshScore();
-    }, 1000)
+    }, 1000);
+
+    document.getElementById('restart-button').addEventListener('click', restartGame);
+    document.getElementById('modal-restart-button').addEventListener('click', restartGame);
 });
 
 function startSizeSelectState() {

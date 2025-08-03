@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     displayScores("date");
+    document.getElementById("sort-by-date").addEventListener("click", function() {
+        displayScores("date");
+    });
+    document.getElementById("sort-by-time").addEventListener("click", function() {
+        displayScores("time");
+    });
 });
 
 

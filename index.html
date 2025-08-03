@@ -17,7 +17,7 @@
 <main id="main">
     <div class="wrapper show" id="main-options">
         <h1>MINESWEEPER</h1>
-        <div class="button big green" onclick="goToDifficultySelect()">
+        <div class="button big green" id="play-button">
             <span class="button-text">PLAY</span>
         </div>
         <a class="button big blue" href="scoreboard.html">
@@ -32,19 +32,19 @@
     </div>
     <div class="wrapper" id="difficulty-select">
         <span>SELECT DIFFICULTY:</span>
-        <div class="button big green" onclick="selectDifficulty('easy')">
+        <div class="button big green" id="easy-button">
             <span class="button-text">EASY</span>
             <span class="smalltext">8x8 - 10 💥</span>
         </div>
-        <div class="button big yellow" onclick="selectDifficulty('medium')">
+        <div class="button big yellow" id="medium-button">
             <span class="button-text">MEDIUM</span>
             <span class="smalltext">12x12 - 25 💥</span>
         </div>
-        <div class="button big red" onclick="selectDifficulty('hard')">
+        <div class="button big red" id="hard-button">
             <span class="button-text">HARD</span>
             <span class="smalltext">16x16 - 40 💥</span>
         </div>
-        <div class="button" onclick="goToMainOptions()">
+        <div class="button" id="back-button">
             <span class="button-text">BACK</span>
         </div>
     </div>
