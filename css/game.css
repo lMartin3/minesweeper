@@ -29,11 +29,10 @@ main {
 }
 
 .game-grid {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     border-spacing: 0;
     gap: 0;
-    grid-column-gap: 0;
-    grid-row-gap: 0;
 }
 
 .game-grid-cell {
@@ -50,6 +49,8 @@ main {
     font-family: 'Minesweeper', sans-serif;
     font-size: 0.8rem;
     user-select: none;
+    box-sizing: border-box;
+    flex: 0 0 auto;
 }
 
 .game-grid-cell:hover {

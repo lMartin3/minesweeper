@@ -82,7 +82,7 @@ function selectDifficulty(difficulty) {
     gameGrid.classList.add("game-grid");
     gameGrid.classList.add(difficulty.grid_size);
     var size = difficulty.size;
-    gameGrid.style = "grid-template-columns: repeat(" + size + ", 1fr); grid-template-rows: repeat(" + size + ", 1fr); max-width: " + (size * 1.5) + "rem;";
+    gameGrid.style = "max-width: " + (size * 1.5) + "rem; width: " + (size * 1.5) + "rem;";
     boardComponent.appendChild(gameGrid);
     for (var y = 0; y < size; y++) {
         var row = [];
