@@ -342,7 +342,7 @@ function toggleModal(open, won) {
         winForm.addEventListener("submit", function (event) {
             event.preventDefault();
             var playerName = document.getElementById("player-name").value;
-            if (!playerName) return;
+            if (!playerName || playerName.length <3 ) return;
             savePlayerScore(playerName, selectedDifficulty.name, selectedDifficulty.mines, gameTime, finishTimestamp);
             modal.classList.remove("show");
             window.location.href = "index.html";
